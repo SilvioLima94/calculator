@@ -1,35 +1,58 @@
-h1 {
-  text-align: center;
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  border: 2px solid rgb(96, 169, 232);
 }
 
 .container {
-  height: 500px;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center;
-  align-items: center;
-  gap: 10px; */
-  /* border: 1px solid red; */
+  border: 1px solid red;
+  height: 60vh;
+  width: 30vw;
+  border-radius: 10px;
 }
 
-.value {
-  height: 60px;
+.display-wrapper {
+  margin: 20px;
+  padding: 40px;
+  border: 1px solid green;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
+  border-radius: 6px;
 }
 
-.calculator {
-  height: 200px;
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  /* border: 1px solid green; */
+.display {
+  border: 1px solid orange;
+  padding: 10px;
+  font-size: 1.5rem;
 }
-.buttons {
+
+.lg-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+.lg-buttons > button {
+  padding: 20px 70px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: none;
+}
+
+.subcontent {
+  /* border: 1px solid rgb(111, 65, 157); */
+}
+
+.sm-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px 0;
+}
+.sm-buttons > button {
+  padding: 20px 40px;
+  border-radius: 4px;
+  border: none;
 }
