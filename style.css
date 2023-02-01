@@ -4,29 +4,27 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  border: 2px solid rgb(96, 169, 232);
 }
 
 .container {
-  border: 1px solid red;
   height: 60vh;
   width: 30vw;
   border-radius: 10px;
+  background-color: rgb(200, 238, 252);
 }
 
 .display-wrapper {
   margin: 20px;
   padding: 40px;
-  border: 1px solid green;
   display: flex;
   justify-content: end;
   border-radius: 6px;
+  background-color: #fff;
 }
 
 .display {
-  border: 1px solid orange;
   padding: 10px;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .lg-buttons {
@@ -42,8 +40,14 @@ body {
   border: none;
 }
 
-.subcontent {
-  /* border: 1px solid rgb(111, 65, 157); */
+.lg-buttons :first-child {
+  background-color: rgb(97, 167, 233);
+  color: #fff;
+}
+
+.lg-buttons :last-child {
+  background-color: #ff6347;
+  color: #fff;
 }
 
 .sm-buttons {
@@ -54,5 +58,11 @@ body {
 .sm-buttons > button {
   padding: 20px 40px;
   border-radius: 4px;
+  background-color: #fff;
   border: none;
+}
+
+.sm-buttons > .operand {
+  background-color: #ffb223;
+  color: #fff;
 }
