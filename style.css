@@ -7,25 +7,25 @@ body {
 }
 
 .container {
-  height: 60vh;
-  width: 30vw;
+  max-height: 70vh;
+  max-width: 50vw;
   border-radius: 10px;
   background-color: rgb(200, 238, 252);
 }
 
 .display-wrapper {
-  margin: 20px;
-  padding: 40px;
+  margin: 20px 30px;
+  padding: 30px;
   display: flex;
   justify-content: end;
   border-radius: 6px;
   background-color: #fff;
 }
 
-.display {
+/* .display {
   padding: 10px;
   font-size: 2rem;
-}
+} */
 
 .lg-buttons {
   display: flex;
@@ -34,8 +34,8 @@ body {
 }
 
 .lg-buttons > button {
-  padding: 20px 70px;
-  font-size: 16px;
+  padding: 20px 44px;
+  font-size: 1rem;
   border-radius: 4px;
   border: none;
 }
@@ -50,19 +50,29 @@ body {
   color: #fff;
 }
 
+.subcontent {
+  /* border: 1px solid green; */
+  margin: 0 10px;
+  padding: 10px;
+}
+
 .sm-buttons {
   display: flex;
   justify-content: space-evenly;
-  margin: 10px 0;
+  margin: 10px;
+  gap: 10px;
 }
 .sm-buttons > button {
-  padding: 20px 40px;
+  padding: 20px 30px;
   border-radius: 4px;
   background-color: #fff;
   border: none;
 }
 
-.sm-buttons > .operand {
+.sm-buttons > .operator {
   background-color: #ffb223;
   color: #fff;
+}
+button {
+  cursor: pointer;
 }
