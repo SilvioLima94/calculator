@@ -28,21 +28,47 @@ function operate(op, num1, num2) {
   }
 }
 
-let displayWrapper = document.querySelector(".display-wrapper");
-//console.log(displayValue);
-let display = document.createElement("div");
+let displayValues = [];
 
-let btns = document.querySelectorAll("button");
-btns.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    display.innerText = e.target.value;
-    return displayWrapper.appendChild(display);
+function populate() {
+  let displayWrapper = document.querySelector(".display-wrapper");
+  let display;
+  let btns = document.querySelectorAll("button");
+  let fragment = document.createDocumentFragment();
+
+  btns.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      display = document.createElement("div");
+      display.className = "display";
+
+      display.innerText = e.target.value;
+
+      if (e.target.value === "clear") {
+        return document
+          .querySelectorAll(".display")
+          .forEach((div) => div.parentNode.removeChild(div));
+      }
+
+      fragment.appendChild(display);
+
+      displayWrapper.appendChild(fragment);
+
+      if (e.target.value === "delete") {
+        // let item = displayWrapper;
+        // let itemsArray = Array.from(item);
+        // itemsArray.forEach((div) => div.removeChild(div));
+        // let res = itemsArray
+        //   .map((item) => item.outerText)
+        //   .filter((item) => item !== "delete");
+        // displayValues.push(res);
+        // console.log(displayValues);
+
+        Array.from(this.element.querySelectorAll(".display")).forEach((item) =>
+          item.removeChild(item)
+        );
+      }
+    });
   });
-});
+}
 
-let clear = document.querySelectorAll("button")[0];
-let clearDisplay = clear.addEventListener("click", () =>
-  clear.getAttribute("0")
-);
-
-console.log(clear);
+console.log(populate());
