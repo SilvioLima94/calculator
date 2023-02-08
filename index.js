@@ -28,7 +28,7 @@ function operate(op, num1, num2) {
   }
 }
 
-let displayValues = [];
+let displayValues;
 
 function populate() {
   let displayWrapper = document.querySelector(".display-wrapper");
@@ -44,29 +44,33 @@ function populate() {
       display.innerText = e.target.value;
 
       if (e.target.value === "clear") {
+        displayValues = null;
+        console.log(displayValues, "Array is now empty!");
         return document
           .querySelectorAll(".display")
           .forEach((div) => div.parentNode.removeChild(div));
+      } else if (
+        display.innerText !== "delete" &&
+        display.innerText !== "times" &&
+        display.innerText !== "divide" &&
+        display.innerText !== "minus" &&
+        display.innerText !== "plus" &&
+        display.innerText !== "equal"
+      ) {
+        fragment.appendChild(display);
+        displayWrapper.appendChild(fragment);
+      } else if (display.innerText === "period") {
+        displayValues.push(".");
+      } else if (e.target.value === "delete") {
+        displayValues.pop();
+        console.log(displayValues + "after");
       }
 
-      fragment.appendChild(display);
-
-      displayWrapper.appendChild(fragment);
-
-      if (e.target.value === "delete") {
-        // let item = displayWrapper;
-        // let itemsArray = Array.from(item);
-        // itemsArray.forEach((div) => div.removeChild(div));
-        // let res = itemsArray
-        //   .map((item) => item.outerText)
-        //   .filter((item) => item !== "delete");
-        // displayValues.push(res);
-        // console.log(displayValues);
-
-        Array.from(this.element.querySelectorAll(".display")).forEach((item) =>
-          item.removeChild(item)
-        );
-      }
+      let extractedNumbersArray = Array.from(displayWrapper.outerText)
+        .filter((item) => item !== "\n")
+        .map((item) => parseInt(item));
+      displayValues = extractedNumbersArray;
+      console.log(displayValues);
     });
   });
 }
