@@ -43,7 +43,7 @@ function populate() {
 
       display.innerText = e.target.value;
 
-      if (e.target.value === "clear") {
+      if (display.innerText === "clear") {
         displayValues = null;
         console.log(displayValues, "Array is now empty!");
         return document
@@ -51,25 +51,29 @@ function populate() {
           .forEach((div) => div.parentNode.removeChild(div));
       } else if (
         display.innerText !== "delete" &&
-        display.innerText !== "times" &&
+        display.innerText !== "multiply" &&
         display.innerText !== "divide" &&
-        display.innerText !== "minus" &&
-        display.innerText !== "plus" &&
+        display.innerText !== "subtract" &&
+        display.innerText !== "addition" &&
         display.innerText !== "equal"
       ) {
         fragment.appendChild(display);
-        displayWrapper.appendChild(fragment);
-      } else if (display.innerText === "period") {
-        displayValues.push(".");
-      } else if (e.target.value === "delete") {
-        displayValues.pop();
-        console.log(displayValues + "after");
+        return displayWrapper.appendChild(fragment);
+      } else if (display.innerText === ".") {
+        let strArr = displayValues.map(String);
+        // strArr.push(".");
+        // let newArr = strArr;
+        console.log(strArr);
+      } else if (display.innerText === "delete") {
+        const el = displayWrapper;
+        return el.removeChild(el.lastElementChild);
       }
 
       let extractedNumbersArray = Array.from(displayWrapper.outerText)
         .filter((item) => item !== "\n")
-        .map((item) => parseInt(item));
+        .map((item) => parseFloat(item));
       displayValues = extractedNumbersArray;
+      //displayValues = displayWrapper;
       console.log(displayValues);
     });
   });
