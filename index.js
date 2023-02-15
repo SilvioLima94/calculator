@@ -32,64 +32,78 @@ function populate() {
   let btns = document.querySelectorAll("button");
   let currentOperation = document.querySelector(".current-operation");
   let lastOperation = document.querySelector(".last-operation");
-  let bottomScreen = document.querySelector("#bottom-screen");
-  let display, current, result, newNum, currentOperator;
-  let operatorArray = ["divide", "multiply", "subtract", "add"];
+  let displayVal, currentVal, newVal, result, currentOperator;
+  let operatorionArray = ["divide", "multiply", "subtract", "add"];
 
   btns.forEach((button) => {
     button.addEventListener("click", (e) => {
-      display = e.target.value;
+      displayVal = e.target.value;
 
-      let operatorMatch = operatorArray.filter((op) => op === display).join("");
-      console.log("operatorMatch: " + operatorMatch);
+      let operatorMatch = operatorionArray
+        .filter((op) => op === displayVal)
+        .join("");
 
-      let operatorSign =
+      let operator =
         operatorMatch === "divide"
-          ? " / "
+          ? " ÷ "
           : operatorMatch === "multiply"
-          ? " * "
+          ? " × "
           : operatorMatch === "subtract"
           ? " - "
           : operatorMatch === "add"
           ? " + "
           : "";
-      console.log(operatorSign);
 
-      if (display === "clear") {
+      if (displayVal === "clear") {
         lastOperation.innerHTML = "";
         return (currentOperation.innerHTML = "");
-      } else if (
-        display !== "delete" &&
-        display !== "multiply" &&
-        display !== "divide" &&
-        display !== "subtract" &&
-        display !== "add" &&
-        display !== "equal"
-      ) {
-        return currentOperation.append(e.target.value);
-      } else if (display === "delete") {
-        // const removeElement = Array.from(currentOperation);
-        // console.log(removeElement);
-      } else if (display === operatorMatch) {
+      } else if (displayVal === "delete") {
+        const removeElement = Array.from(currentOperation.outerText);
+        let result = removeElement.filter(
+          (num) => num === currentOperation.outerText
+        );
+        console.log(result);
+      } else if (displayVal === operatorMatch) {
         currentOperator = operatorMatch;
-        current = Number(currentOperation.outerText);
-        console.log(typeof current);
-        console.log("current: " + current);
-        lastOperation.append(current + operatorSign);
-        bottomScreen.innerHTML = "";
-      } else if (display === "equal") {
-        //console.log("equal...");
-        newNum = Number(currentOperation.outerText);
-        console.log("newNum");
-        console.log(newNum);
-        lastOperation.append(newNum);
-        console.log(operatorMatch);
-        result = operate(currentOperator, current, newNum);
+        currentVal = Number(currentOperation.outerText);
+        if (currentVal === 0) return;
+        lastOperation.append(currentVal + operator);
+        return (currentOperation.innerHTML = "");
+      } else if (
+        displayVal === "equal" &&
+        currentOperation.innerHTML !== "" &&
+        lastOperation.innerHTML !== ""
+      ) {
+        newVal = Number(currentOperation.outerText);
+        lastOperation.append(newVal);
+        result = operate(currentOperator, currentVal, newVal);
         console.log("result: " + result);
         currentOperation.innerHTML = "";
-        currentOperation.append(result.toFixed(3));
+        let final = result % 2 === 0 ? result : result.toFixed(2);
+        console.log("Final: " + final);
+        currentOperation.append(final);
+        if (lastOperation.outerText) {
+          console.log("lastOperation: " + lastOperation.outerText);
+          lastOperation.innerHTML = "";
+          //return lastOperation.append(final);
+        } else {
+          if (displayVal) {
+          }
+        }
       } else {
-        return;
+        displayVal !== "delete" &&
+          displayVal !== "multiply" &&
+          displayVal !== "divide" &&
+          displayVal !== "subtract" &&
+          displayVal !== "add" &&
+          displayVal !== "equal";
+        {
+          displayVal === "." && currentOperation.outerText === ""
+            ? currentOperation.append("0.")
+            : displayVal !== "." && displayVal !== "equal"
+            ? currentOperation.append(e.target.value)
+            : "";
+        }
       }
     });
   });
