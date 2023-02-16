@@ -35,6 +35,10 @@ function populate() {
   let displayVal, currentVal, newVal, result, currentOperator;
   let operatorionArray = ["divide", "multiply", "subtract", "add"];
 
+  function arrayRemove(arr, val) {
+    return arr.filter((el) => el !== val);
+  }
+
   btns.forEach((button) => {
     button.addEventListener("click", (e) => {
       displayVal = e.target.value;
@@ -58,11 +62,11 @@ function populate() {
         lastOperation.innerHTML = "";
         return (currentOperation.innerHTML = "");
       } else if (displayVal === "delete") {
-        const removeElement = Array.from(currentOperation.outerText);
-        let result = removeElement.filter(
-          (num) => num === currentOperation.outerText
-        );
-        console.log(result);
+        currentOperation.outerText
+          ? currentOperation.lastChild.remove()
+          : lastOperation.outerText
+          ? lastOperation.lastChild.remove()
+          : "";
       } else if (displayVal === operatorMatch) {
         currentOperator = operatorMatch;
         currentVal = Number(currentOperation.outerText);
@@ -71,8 +75,8 @@ function populate() {
         return (currentOperation.innerHTML = "");
       } else if (
         displayVal === "equal" &&
-        currentOperation.innerHTML !== "" &&
-        lastOperation.innerHTML !== ""
+        currentOperation.innerHTML &&
+        lastOperation.innerHTML
       ) {
         newVal = Number(currentOperation.outerText);
         lastOperation.append(newVal);
@@ -84,11 +88,7 @@ function populate() {
         currentOperation.append(final);
         if (lastOperation.outerText) {
           console.log("lastOperation: " + lastOperation.outerText);
-          lastOperation.innerHTML = "";
-          //return lastOperation.append(final);
-        } else {
-          if (displayVal) {
-          }
+          return (lastOperation.innerHTML = "");
         }
       } else {
         displayVal !== "delete" &&
