@@ -67,7 +67,7 @@ function populate() {
         currentOperator = operatorMatch;
         currentVal = Number(currentOperation.outerText);
         lastOperation.append(currentVal + operator);
-        console.log("currentVal: " + currentVal);
+
         return (currentOperation.innerHTML = "");
       } else if (
         displayVal === "equal" &&
@@ -75,7 +75,7 @@ function populate() {
         lastOperation.innerHTML
       ) {
         newVal = Number(currentOperation.outerText);
-        console.log("newVal: " + newVal);
+
         lastOperation.append(newVal);
         if (newVal === 0) {
           alert("Error! Can't divide by 0");
@@ -87,7 +87,6 @@ function populate() {
         let final = result % 2 === 0 ? result : result.toFixed(2);
         currentOperation.append(final);
         if (lastOperation.outerText) {
-          console.log("lastOperation: " + lastOperation.outerText);
           return (lastOperation.innerHTML = "");
         }
       } else {
