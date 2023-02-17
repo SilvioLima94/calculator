@@ -35,10 +35,6 @@ function populate() {
   let displayVal, currentVal, newVal, result, currentOperator;
   let operatorionArray = ["divide", "multiply", "subtract", "add"];
 
-  function arrayRemove(arr, val) {
-    return arr.filter((el) => el !== val);
-  }
-
   btns.forEach((button) => {
     button.addEventListener("click", (e) => {
       displayVal = e.target.value;
@@ -70,8 +66,8 @@ function populate() {
       } else if (displayVal === operatorMatch) {
         currentOperator = operatorMatch;
         currentVal = Number(currentOperation.outerText);
-        if (currentVal === 0) return;
         lastOperation.append(currentVal + operator);
+        console.log("currentVal: " + currentVal);
         return (currentOperation.innerHTML = "");
       } else if (
         displayVal === "equal" &&
@@ -79,12 +75,16 @@ function populate() {
         lastOperation.innerHTML
       ) {
         newVal = Number(currentOperation.outerText);
+        console.log("newVal: " + newVal);
         lastOperation.append(newVal);
+        if (newVal === 0) {
+          alert("Error! Can't divide by 0");
+          lastOperation.innerHTML = "";
+          return (currentOperation.innerHTML = "");
+        }
         result = operate(currentOperator, currentVal, newVal);
-        console.log("result: " + result);
         currentOperation.innerHTML = "";
         let final = result % 2 === 0 ? result : result.toFixed(2);
-        console.log("Final: " + final);
         currentOperation.append(final);
         if (lastOperation.outerText) {
           console.log("lastOperation: " + lastOperation.outerText);
